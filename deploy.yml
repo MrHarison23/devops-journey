@@ -2,7 +2,7 @@ script: |
   echo "${{ secrets.SSH_KEY_BASE64 }}" | base64 -d > key.pem
   chmod 600 key.pem
 
-  ssh -i key.pem -o StrictHostKeyChecking=no david@ТВОЙ_IP << 'EOF'
+  ssh -i key.pem -o StrictHostKeyChecking=no david@192.168.0.108 << 'EOF'
     cd /home/david/devops-project
     git reset --hard
     git pull origin main
