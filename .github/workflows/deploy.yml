@@ -1,20 +1,10 @@
-name: Deploy
-
-on:
-  push:
-    branches: [ "main" ]
-
-jobs:
-  deploy:
-    runs-on: ubuntu-latest
-
-    steps:
-      - name: Deploy to VM
-        uses: appleboy/ssh-action@v1.0.0
-        with:
-          host: 62.122.210.118
-          username: david
-          key: ${{ secrets.SSH_PRIVATE_KEY }}
-          script: |
-            cd /home/david/devops-project
-            ./deploy.sh
+- name: Deploy to VM
+  uses: appleboy/ssh-action@v1.0.3
+  with:
+    host: 62.122.210.118
+    username: david
+    key: ${{ secrets.SSH_PRIVATE_KEY }}
+    port: 22
+    script: |
+      cd /home/***/flask
+      ./deploy.sh
